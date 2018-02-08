@@ -5,7 +5,7 @@ normal=$(tput sgr0)
 command="$*"
 
 find -mindepth 1 -maxdepth 1 -type d | sort | while read file; do
-  git -C "$file" status -s &> /dev/null
+  git -C "$file" rev-parse &> /dev/null
   code=$?
 
   if [ $code == 0 ]; then
