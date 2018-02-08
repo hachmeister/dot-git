@@ -1,0 +1,20 @@
+#!/bin/bash
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+command="$*"
+
+find -mindepth 1 -maxdepth 1 -type d | sort | while read file; do
+  git -C "$file" status -s &> /dev/null
+  code=$?
+
+  if [ $code == 0 ]; then
+    repo=$(basename "$file")
+    echo "${bold}${repo}:${normal}"
+
+    if [ "$command" != "" ]; then
+      git -C "$file" $command
+    fi
+  fi
+
+done
