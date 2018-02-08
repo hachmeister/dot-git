@@ -1,9 +1,9 @@
 # Variables
-set commit-order = topo
+set commit-order = date
 
 # View settings
 set main-options = --all
-set main-view = id:yes author:abbreviated date:custom commit-title:yes,graph,refs
+set main-view = id:yes author:full date:custom commit-title:yes,graph,refs
 
 color id        yellow  default
 color author    default default
@@ -12,10 +12,7 @@ color main-ref  red     default
 
 # UI display settings
 set tab-size      = 2
-#set line-graphics = ascii
 
 # Generic
-bind generic  <Down>   move-down
-bind generic  <Up>     move-up
 bind generic  <C-Down> next
 bind generic  <C-Up>   previous
