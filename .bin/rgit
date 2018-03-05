@@ -2,7 +2,6 @@
 
 bold=$(tput bold)
 normal=$(tput sgr0)
-command="$*"
 
 find -mindepth 1 -maxdepth 1 -type d | sort | while read file; do
   git -C "$file" rev-parse &> /dev/null
@@ -12,8 +11,8 @@ find -mindepth 1 -maxdepth 1 -type d | sort | while read file; do
     repo=$(basename "$file")
     echo "${bold}${repo}:${normal}"
 
-    if [ "$command" != "" ]; then
-      git -C "$file" $command
+    if (( "$#" > 0 )); then
+      git -C "$file" "$@"
     fi
   fi
 
